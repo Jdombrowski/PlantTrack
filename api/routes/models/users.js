@@ -13,24 +13,19 @@ router.get('/', (req, res) => {
 });
 
 // add a new user
-// router.post('/add', (req, res) => {
-//   dbConnection.query('INSERT INTO users SET ?', req, res, function (
-//     err,
-//     result
-//   ) {
-//     //if(err) throw err
-//     if (err) {
-//       req.flash('error', err);
-
-//       // render to add.ejs
-//       res.render('books/add', {
-//         username: req.body.username,
-//         email: req.body.email,
-//       });
-//     }
-//     // insert success message / code
-//   });
-// });
+router.post('/register', (req, res) => {
+  let person = {
+    username: req.body.username,
+    email: req.body.email,
+  };
+  dbConnection.query('INSERT INTO users SET ?', person, (err) => {
+    if (err) {
+      res.sendStatus(422);
+    } else {
+      res.sendStatus(201);
+    }
+  });
+});
 
 // router.get('/delete/(:id)', function (req, res, next) {
 //   let id = req.params.id;
