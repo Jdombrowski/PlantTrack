@@ -1,3 +1,5 @@
+// import router from '../api/routes';
+
 var cookieParser = require('cookie-parser');
 var cors = require('cors');
 var createError = require('http-errors');

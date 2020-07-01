@@ -6,12 +6,12 @@ function App() {
   const [responseText, setResponseText] = useState('TEST');
 
   useEffect(() => {
-    fetch(`http://localhost:9000/testAPI`)
+    fetch(`http://localhost:9000/api-status`)
       .then((res) => {
-        res.text();
+        res.json();
       })
       .then((text) => {
-        setResponseText(text);
+        setResponseText(text.status);
       })
       .catch((error) => console.log(error));
   }, []);
