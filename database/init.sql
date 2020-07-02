@@ -8,7 +8,7 @@ CREATE TABLE users
   AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR
   (255) UNIQUE NOT NULL,
-  email VARCHAR(255) UNIQUE,
+  email VARCHAR(255) UNIQUE NOT NULL,
   created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -28,14 +28,12 @@ CREATE TABLE plants
 (
   id INT AUTO_INCREMENT PRIMARY KEY, 
   created_at TIMESTAMP DEFAULT NOW(),
-  light_requirement INT,
-  location_preference INT,
+  light_requirement VARCHAR(30),
+  location_preference VARCHAR(30),
   name VARCHAR(255) UNIQUE NOT NULL, 
   type VARCHAR(255), 
   user_id INT NOT NULL, 
-  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-  FOREIGN KEY (light_requirement) REFERENCES light_levels(id),
-  FOREIGN KEY (location_preference) REFERENCES location_preferences(id)
+  FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 
@@ -45,7 +43,6 @@ CREATE TABLE photos(
   user_id INT NOT NULL,
   created_at TIMESTAMP DEFAULT NOW(),
   FOREIGN KEY (user_id) REFERENCES users(id)
-  ON DELETE CASCADE
 );
 
 CREATE TABLE comments(
@@ -62,16 +59,16 @@ CREATE TABLE comments(
 
 -- insert constants
 
-INSERT INTO light_levels
-  (light_requirement)
-VALUES
-  ('Full sun'),
-  ('Partial sun'),
-  ('Full shade'),
-  ('Bright without direct light');
+-- INSERT INTO light_levels
+--   (light_requirement)
+-- VALUES
+--   ('Full sun'),
+--   ('Partial sun'),
+--   ('Full shade'),
+--   ('Bright without direct light');
 
-INSERT INTO location_preferences
-  (location_preference)
-VALUES
-  ('Indoor'),
-  ('Outdoor');
+-- INSERT INTO location_preferences
+--   (location_preference)
+-- VALUES
+--   ('Indoor'),
+--   ('Outdoor');

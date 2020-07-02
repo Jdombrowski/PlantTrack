@@ -16,12 +16,12 @@ VALUES
 INSERT INTO plants
   (created_at, light_requirement, location_preference, name, type, user_id)
 VALUES
-  ('2017-02-16 18:22:10.846', 4, 1, "Zuko", "Monstera Deliciousa", 1),
-  ('2017-02-17 18:22:10.846', 4, 1, "Azula", "Monstera Deliciousa", 2),
-  ('2017-02-17 18:22:10.846', 4, 1, "Iroh", "Chinese EverGreen", 1),
-  ('2017-02-17 18:22:10.846', 4, 1, "Toph", "Zanziveria", 2),
-  ('2017-02-17 18:22:10.846', 1, 2, "Sokka", "Cherry Tomato", 1),
-  ('2017-02-17 18:22:10.846', 1, 2, "Momo", "Heirloom Tomato", 2);
+  ('2017-02-16 18:22:10.846', "Bright Indirect", "Indoor", "Zuko", "Monstera Deliciousa", 1),
+  ('2017-02-17 18:22:10.846', "Bright Indirect", "Indoor", "Azula", "Monstera Deliciousa", 2),
+  ('2017-02-17 18:22:10.846', "Bright Indirect", "Indoor", "Iroh", "Chinese EverGreen", 1),
+  ('2017-02-17 18:22:10.846', "Bright Indirect", "Indoor", "Toph", "Zanziveria", 2),
+  ('2017-02-17 18:22:10.846', "Full Sun", "Outdoor", "Sokka", "Cherry Tomato", 1),
+  ('2017-02-17 18:22:10.846', "Full Sun", "Outdoor", "Momo", "Heirloom Tomato", 2);
 
 INSERT INTO comments
   (comment_text, photo_id, plant_id, user_id)
