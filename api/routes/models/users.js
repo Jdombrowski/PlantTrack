@@ -2,17 +2,7 @@ var express = require('express');
 var router = express.Router();
 var dbConnection = require('../../../database/connection/index.js');
 
-/* GET users listing. */
-router.get('/', (req, res) => {
-  // Find count of users in DB
-  var q = 'SELECT * FROM users ORDER BY id desc';
-  dbConnection.query(q, (err, results) => {
-    if (err) throw err;
-    var count = results[0].count;
-  });
-});
-
-// add a new user
+// CREATE a new user
 router.post('/register', (req, res) => {
   let person = {
     username: req.body.username,
@@ -24,24 +14,55 @@ router.post('/register', (req, res) => {
     } else {
       res.sendStatus(201);
     }
+    return;
   });
 });
 
-// router.get('/delete/(:id)', function (req, res, next) {
-//   let id = req.params.id;
+/* READ users listing. */
+router.get('/', (req, res) => {
+  // Find count of users in DB
+  var q = 'SELECT username FROM users ORDER BY id desc';
+  dbConnection.query(q, (err, results) => {
+    if (err) {
+      console.log(err);
+      return res.sendStatus(500);
+    }
+    res.json(results);
+  });
+});
 
-//   dbConn.query('DELETE FROM users WHERE id = ' + id, function (err, result) {
-//     //if(err) throw err
-//     if (err) {
-//       // set flash message
-//       // redirect
-//       res.redirect('/');
-//     } else {
-//       // set flash message
-//       // redirect
-//       res.redirect('/');
-//     }
-//   });
-// });
+// READ user by email
+router.get('/emailLookup', (req, res) => {
+  dbConnection.query(
+    `SELECT * FROM users WHERE email = "${req.body.email}"`,
+    (err, results) => {
+      console.log(results);
+      if (err) {
+        console.log(err);
+        return res.sendStatus(422);
+      } else {
+        res.json(results[0]);
+      }
+    }
+  );
+  return;
+});
+
+// DESTROY
+router.get('/emailDelete', (req, res) => {
+  dbConnection.query(
+    `DELETE FROM users WHERE email = "${req.body.email}"`,
+    (err, results) => {
+      console.log(results);
+      if (err) {
+        console.log(err);
+        return res.sendStatus(422);
+      } else {
+        res.json(results[0]);
+      }
+    }
+  );
+  return;
+});
 
 module.exports = router;
