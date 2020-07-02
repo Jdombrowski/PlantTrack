@@ -33,7 +33,7 @@ CREATE TABLE plants
   name VARCHAR(255) UNIQUE NOT NULL, 
   type VARCHAR(255), 
   user_id INT NOT NULL, 
-  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
   FOREIGN KEY (light_requirement) REFERENCES light_levels(id),
   FOREIGN KEY (location_preference) REFERENCES location_preferences(id)
 );
@@ -45,6 +45,7 @@ CREATE TABLE photos(
   user_id INT NOT NULL,
   created_at TIMESTAMP DEFAULT NOW(),
   FOREIGN KEY (user_id) REFERENCES users(id)
+  ON DELETE CASCADE
 );
 
 CREATE TABLE comments(
@@ -54,7 +55,7 @@ CREATE TABLE comments(
   plant_id INT NOT NULL,
   user_id INT NOT NULL,
   created_at TIMESTAMP DEFAULT NOW(),
-  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
   FOREIGN KEY (photo_id) REFERENCES photos(id),
   FOREIGN KEY (plant_id) REFERENCES plants(id)
 );
