@@ -7,6 +7,7 @@ var path = require('path');
 
 var indexRouter = require('./routes/index');
 var commentsRouter = require('./routes/models/comments');
+var photosRouter = require('./routes/models/photos');
 var plantsRouter = require('./routes/models/plants');
 var usersRouter = require('./routes/models/users');
 
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/comments', commentsRouter);
+app.use('/photos', photosRouter);
 app.use('/plants', plantsRouter);
 app.use('/users', usersRouter);
 

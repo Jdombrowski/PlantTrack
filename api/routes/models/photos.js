@@ -5,12 +5,10 @@ var dbConnection = require('../../../database/connection/index.js');
 // CREATE a new comment
 router.post('/create', (req, res) => {
   let comment = {
-    comment_text: req.body.comment_text,
-    photo_id: req.body.photo_id,
-    plant_id: req.body.plant_id,
+    image_url: req.body.image_url,
     user_id: req.body.user_id,
   };
-  dbConnection.query('INSERT INTO comments SET ?', comment, (err) => {
+  dbConnection.query('INSERT INTO photos SET ?', comment, (err) => {
     if (err) {
       res.sendStatus(422);
     } else {
@@ -22,7 +20,7 @@ router.post('/create', (req, res) => {
 
 /* READ all comments */
 router.get('/', (req, res) => {
-  var q = `SELECT * FROM comments `;
+  var q = `SELECT * FROM photos `;
   dbConnection.query(q, (err, results) => {
     if (err) {
       console.log(err);
@@ -32,9 +30,9 @@ router.get('/', (req, res) => {
   });
 });
 
-/* READ all comments from a user */
-router.get('/users/:user_id', (req, res) => {
-  var q = `SELECT * FROM comments WHERE user_id = ${erq.params.user_id}`;
+/* READ all photos from a user */
+router.get('/owner/:user_id', (req, res) => {
+  var q = `SELECT * FROM photos WHERE user_id = ${req.params.user_id}`;
   dbConnection.query(q, (err, results) => {
     if (err) {
       console.log(err);
@@ -44,10 +42,10 @@ router.get('/users/:user_id', (req, res) => {
   });
 });
 
-// READ user by id
-router.get('/plants/:plant_id', (req, res) => {
+// READ photos by id
+router.get('/photo/:photo_id', (req, res) => {
   dbConnection.query(
-    `SELECT * FROM comments WHERE plant_id = ${req.params.plant_id}`,
+    `SELECT * FROM photos WHERE photo_id = ${req.params.photo_id}`,
     (err, results) => {
       console.log(results);
       if (err) {
@@ -61,9 +59,9 @@ router.get('/plants/:plant_id', (req, res) => {
   return;
 });
 
-// UPDATE comment text
-router.post('/update/:comment_id', (req, res) => {
-  let q = `UPDATE comments SET comment_text = "${req.body.comment_text}" WHERE id = ${req.params.comment_id}`;
+// UPDATE photo url
+router.post('/update/:photo_id', (req, res) => {
+  let q = `UPDATE photos SET photo_url = "${req.body.photo_url}" WHERE id = ${req.params.photo_id}`;
   dbConnection.query(q, (err, results) => {
     if (err) {
       console.log(err);
@@ -76,9 +74,9 @@ router.post('/update/:comment_id', (req, res) => {
 });
 
 // DESTROY
-router.get('/delete/:comment_id', (req, res) => {
+router.get('/delete/:photo_id', (req, res) => {
   dbConnection.query(
-    `DELETE FROM comments WHERE id = "${req.params.comment_id}"`,
+    `DELETE FROM photos WHERE id = "${req.params.photo_id}"`,
     (err) => {
       if (err) {
         console.log(err);

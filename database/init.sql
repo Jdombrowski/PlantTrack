@@ -12,17 +12,17 @@ CREATE TABLE users
   created_at TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE light_levels
-(
-  id INT AUTO_INCREMENT PRIMARY KEY, 
-  light_requirement VARCHAR(255)
-);
+-- CREATE TABLE light_levels
+-- (
+--   id INT AUTO_INCREMENT PRIMARY KEY, 
+--   light_requirement VARCHAR(255)
+-- );
 
-CREATE TABLE location_preferences
-(
-  id INT AUTO_INCREMENT PRIMARY KEY, 
-  location_preference VARCHAR(30)
-);
+-- CREATE TABLE location_preferences
+-- (
+--   id INT AUTO_INCREMENT PRIMARY KEY, 
+--   location_preference VARCHAR(30)
+-- );
 
 CREATE TABLE plants
 (
