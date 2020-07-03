@@ -53,8 +53,8 @@ CREATE TABLE comments(
   user_id INT NOT NULL,
   created_at TIMESTAMP DEFAULT NOW(),
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-  FOREIGN KEY (photo_id) REFERENCES photos(id),
-  FOREIGN KEY (plant_id) REFERENCES plants(id)
+  FOREIGN KEY (photo_id) REFERENCES photos(id) ON DELETE CASCADE,
+  FOREIGN KEY (plant_id) REFERENCES plants(id) ON DELETE CASCADE
 );
 
 -- insert constants
