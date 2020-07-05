@@ -57,7 +57,6 @@ router.get('/owner/:user_id', (req, res) => {
   dbConnection.query(
     `SELECT * FROM plants WHERE user_id = "${req.params.user_id}"`,
     (err, results) => {
-      console.log(results);
       if (err) {
         console.log(err);
         return res.sendStatus(422);
