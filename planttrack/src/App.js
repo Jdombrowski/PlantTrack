@@ -1,26 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 function App() {
-  const [responseText, setResponseText] = useState('TEST');
+  const [plants, setPlants] = useState(false);
+  const [currentPlant, setCurrentPlant] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:9000/api-status`)
-      .then((res) => {
-        res.json();
-      })
-      .then((text) => {
-        setResponseText(text.status);
-      })
-      .catch((error) => console.log(error));
+    axios
+      .get(`http://localhost:9000/plants`)
+      .then((res) => setPlants(res.data))
+      .catch((err) => console.log(err));
   }, []);
 
   return (
     <div className='App'>
       <header className='App-header'>
+        {currentPlant && <div>{currentPlant.name}</div>}
         <img src={logo} className='App-logo' alt='logo' />
-        <p>{responseText}</p>
+        {plants &&
+          plants.map((plant, key) => (
+            <li
+              onClick={() => {
+                setCurrentPlant(plant);
+              }}
+              key={key}
+            >
+              {plant.name} : {plant.type}
+            </li>
+          ))}
         <a
           className='App-link'
           href='https://reactjs.org'
