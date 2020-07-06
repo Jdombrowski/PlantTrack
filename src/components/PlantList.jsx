@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+
+import Wrapper from './baseComponents/Wrapper';
 
 function PlantList() {
   const [plants, setPlants] = useState(false);
@@ -13,8 +16,8 @@ function PlantList() {
   }, []);
 
   return (
-    <div>
-      {currentPlant && <div>{currentPlant.name}</div>}
+    <PlantWrapper>
+      {currentPlant && <Wrapper>{currentPlant.name}</Wrapper>}
       {plants &&
         plants.map((plant, key) => (
           <li
@@ -26,8 +29,16 @@ function PlantList() {
             {plant.name} : {plant.type}
           </li>
         ))}
-    </div>
+    </PlantWrapper>
   );
 }
+
+const PlantWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: autp;
+  border: 1px black solid;
+`;
 
 export default PlantList;

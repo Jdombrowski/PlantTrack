@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+
+import Wrapper from './baseComponents/Wrapper';
 
 function UserList() {
   const [users, setUsers] = useState(false);
@@ -13,8 +16,8 @@ function UserList() {
   }, []);
 
   return (
-    <div>
-      {currentUser && <div>{currentUser.username}</div>}
+    <UserWrapper>
+      {currentUser && <Wrapper>{currentUser.username}</Wrapper>}
       {users &&
         users.map((user, key) => (
           <li
@@ -26,8 +29,16 @@ function UserList() {
             {user.username}
           </li>
         ))}
-    </div>
+    </UserWrapper>
   );
 }
+
+const UserWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: autp;
+  border: 1px black solid;
+`;
 
 export default UserList;
