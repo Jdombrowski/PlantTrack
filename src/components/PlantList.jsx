@@ -37,7 +37,7 @@ const PlantWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: auto;
-  width: autp;
+  width: 50%;
   border: 1px black solid;
 `;
 

@@ -8,8 +8,10 @@ function App() {
   return (
     <div>
       <PlantForm />
-      <PlantList />
-      <UserList />
+      <div>
+        <PlantList />
+        <UserList />
+      </div>
     </div>
   );
 }
