@@ -3,7 +3,7 @@ var router = express.Router();
 var dbConnection = require('../../../database/connection/index.js');
 
 // CREATE a new user
-router.post('/register', (req, res) => {
+router.post('/', (req, res) => {
   let person = {
     username: req.body.username,
     email: req.body.email,
@@ -21,7 +21,7 @@ router.post('/register', (req, res) => {
 /* READ users listing. */
 router.get('/', (req, res) => {
   // Find count of users in DB
-  var q = 'SELECT username FROM users ORDER BY id desc';
+  var q = 'SELECT username, id FROM users ORDER BY id desc';
   dbConnection.query(q, (err, results) => {
     if (err) {
       console.log(err);
@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
 });
 
 // READ user by id
-router.get('/lookup/:user_id', (req, res) => {
+router.get('/user-id/:user_id', (req, res) => {
   dbConnection.query(
     `SELECT * FROM users WHERE id = "${req.params.user_id}"`,
     (err, results) => {
@@ -49,7 +49,7 @@ router.get('/lookup/:user_id', (req, res) => {
 });
 
 // READ user by username
-router.get('/lookup/:username', (req, res) => {
+router.get('/username/:username', (req, res) => {
   dbConnection.query(
     `SELECT * FROM users WHERE username = "${req.params.username}"`,
     (err, results) => {
@@ -68,7 +68,7 @@ router.get('/lookup/:username', (req, res) => {
 // TODO UPDATE if needed
 
 // DESTROY
-router.get('/emailDelete/:user_id', (req, res) => {
+router.delete('/:user_id', (req, res) => {
   dbConnection.query(
     `DELETE FROM users WHERE id = "${req.params.user_id}"`,
     (err, results) => {
