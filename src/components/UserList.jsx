@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import MaterialPlantList from './MaterialPlantList';
+import PlantList from './PlantList';
 import Wrapper from './baseComponents/Wrapper';
 
 function UserList() {
@@ -44,7 +44,7 @@ function UserList() {
           ))}
       </UserWrapper>
       <UserWrapper>
-        <MaterialPlantList data={userPlants} rowNames={rowNames} />
+        <PlantList data={userPlants} rowNames={rowNames} />
       </UserWrapper>
     </div>
   );
