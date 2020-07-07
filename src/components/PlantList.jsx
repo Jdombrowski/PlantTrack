@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
+    minWidth: 450,
   },
 });
 
@@ -27,7 +27,7 @@ const timeDifference = (date1, date2) => {
 export default function PlantList(props) {
   const currentDate = Date.now();
 
-  MarterialPlantList.propTypes = {
+  PlantList.propTypes = {
     data: PropTypes.array,
     rowNames: PropTypes.object,
   };
@@ -49,6 +49,7 @@ export default function PlantList(props) {
         <TableBody>
           {props.data &&
             props.data.map((item) => (
+              // TODO: consider making this component into a generalized component, depends heavily on the amount of data we are dealing with
               <TableRow key={item.name}>
                 <TableCell align='right'>{item.name}</TableCell>
                 <TableCell align='right'>{item.type}</TableCell>

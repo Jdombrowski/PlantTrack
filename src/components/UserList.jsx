@@ -1,11 +1,26 @@
+import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
+import Paper from '@material-ui/core/Paper';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 import PlantList from './PlantList';
-import Wrapper from './baseComponents/Wrapper';
 
-function UserList() {
+const useStyles = makeStyles({
+  table: {
+    minWidth: 100,
+    maxWidth: 300,
+  },
+});
+
+export default function UserList() {
+  const classes = useStyles();
   const rowNames = ['Name', 'Type', 'Location', 'Light', 'Age'];
   const [users, setUsers] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
@@ -30,18 +45,28 @@ function UserList() {
   return (
     <div>
       <UserWrapper>
-        {currentUser && <Wrapper>{currentUser.username}</Wrapper>}
-        {users &&
-          users.map((user, key) => (
-            <li
-              onClick={() => {
-                setCurrentUser(user);
-              }}
-              key={key}
-            >
-              {user.username}
-            </li>
-          ))}
+        <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label='simple table'>
+            <TableHead>
+              <TableRow>
+                <TableCell align='left'>Username</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {users &&
+                users.map((user) => (
+                  <TableRow key={user.username}>
+                    <TableCell
+                      onClick={() => setCurrentUser(user)}
+                      align='left'
+                    >
+                      {user.username}
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </UserWrapper>
       <UserWrapper>
         <PlantList data={userPlants} rowNames={rowNames} />
@@ -57,5 +82,3 @@ const UserWrapper = styled.div`
   width: 100%;
   border: 1px black solid;
 `;
-
-export default UserList;
