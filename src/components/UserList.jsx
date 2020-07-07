@@ -2,9 +2,11 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import MaterialPlantList from './MaterialPlantList';
 import Wrapper from './baseComponents/Wrapper';
 
 function UserList() {
+  const rowNames = ['Name', 'Type', 'Location', 'Light', 'Age'];
   const [users, setUsers] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [userPlants, setUserPlants] = useState(null);
@@ -42,19 +44,7 @@ function UserList() {
           ))}
       </UserWrapper>
       <UserWrapper>
-        {currentUser && userPlants ? (
-          userPlants.map((plant, key) => (
-            <li key={key}>
-              {plant.name}
-              <dl>Type: {plant.type}</dl>
-              <dl>Location: {plant.location_preference}</dl>
-            </li>
-          ))
-        ) : (
-          <div>
-            {currentUser && currentUser.name} doesn't have any registered plants
-          </div>
-        )}
+        <MaterialPlantList data={userPlants} rowNames={rowNames} />
       </UserWrapper>
     </div>
   );
@@ -64,13 +54,8 @@ const UserWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: auto;
-  width: 50%;
+  width: 100%;
   border: 1px black solid;
-`;
-
-const FlexColumnWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 
 export default UserList;
