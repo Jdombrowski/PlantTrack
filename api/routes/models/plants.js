@@ -3,7 +3,7 @@ var router = express.Router();
 var dbConnection = require('../../../database/connection/index.js');
 
 // CREATE a new plant
-router.post('/create', (req, res) => {
+router.post('/', (req, res) => {
   let plant = {
     light_requirement: req.body.light_requirement,
     location_preference: req.body.location_preference,
@@ -93,7 +93,7 @@ router.get('/owner/:user_id', (req, res) => {
 // });
 
 // DESTROY
-router.get('/delete/:plant_id', (req, res) => {
+router.delete('/:plant_id', (req, res) => {
   dbConnection.query(
     `DELETE FROM plants WHERE id = ${req.params.plant_id}`,
     (err, results) => {
