@@ -29,7 +29,7 @@ export default function PlantList(props) {
 
   PlantList.propTypes = {
     data: PropTypes.array,
-    rowNames: PropTypes.object,
+    rowNames: PropTypes.array,
   };
 
   const classes = useStyles();
@@ -42,7 +42,9 @@ export default function PlantList(props) {
           <TableRow>
             {rowNames &&
               rowNames.map((rowName) => (
-                <TableCell align='right'>{rowName}</TableCell>
+                <TableCell align='right' key={rowName}>
+                  {rowName}
+                </TableCell>
               ))}
           </TableRow>
         </TableHead>
