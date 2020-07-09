@@ -12,6 +12,8 @@ import PropTypes from 'prop-types';
 const useStyles = makeStyles({
   table: {
     minWidth: 450,
+    backgroundColor: '#555555',
+    opacity: 0.5,
   },
 });
 

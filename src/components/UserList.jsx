@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import FormControl from '@material-ui/core/FormControl';
-// import FormHelperText from '@material-ui/core/FormHelperText';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import React, { useEffect, useState } from 'react';
@@ -58,7 +58,7 @@ export default function UserList() {
         >
           {users &&
             users.map((user) => (
-              <MenuItem key={user.id} value={user.username}>
+              <MenuItem key={user.id} value={user}>
                 {user.username}
               </MenuItem>
             ))}
