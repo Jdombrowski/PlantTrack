@@ -9,6 +9,7 @@ import Select from '@material-ui/core/Select';
 import styled from 'styled-components';
 
 import PlantList from './PlantList';
+import MaterialTable from './MaterialTable';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -65,7 +66,8 @@ export default function UserList() {
         </Select>
       </FormControl>
       <UserWrapper>
-        <PlantList data={userPlants} rowNames={rowNames} />
+        {/* <PlantList data={userPlants} rowNames={rowNames} /> */}
+        {userPlants && <MaterialTable data={userPlants} />}
       </UserWrapper>
     </div>
   );

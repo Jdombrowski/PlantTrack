@@ -35,6 +35,7 @@ const FlexRow = styled.div`
 `;
 
 const AlignmentBox = styled.div`
+  color: #ebebd3;
   display: flex;
   align-items: center;
   justify-content: center;
