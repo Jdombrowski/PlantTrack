@@ -1,15 +1,14 @@
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import Select from '@material-ui/core/Select';
 import styled from 'styled-components';
 
-import PlantList from './PlantList';
-import MaterialTable from './MaterialTable';
+import EnhancedTable from './EnhancedTable';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -20,9 +19,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function UserList() {
+export default function UserList(props) {
+  UserList.propTypes = {
+    setSelectedPlant: PropTypes.func.isRequired,
+  };
   const classes = useStyles();
-  const rowNames = ['Name', 'Type', 'Location', 'Light', 'Age'];
   const [users, setUsers] = useState(false);
   const [currentUser, setCurrentUser] = useState('');
   const [userPlants, setUserPlants] = useState();
@@ -49,25 +50,29 @@ export default function UserList() {
 
   return (
     <div>
-      <FormControl className={classes.formControl}>
-        <InputLabel id='demo-simple-select-label'>Username</InputLabel>
-        <Select
-          labelId='demo-simple-select-label'
-          id='demo-simple-select'
-          value={currentUser}
-          onChange={handleChange}
-        >
-          {users &&
-            users.map((user) => (
-              <MenuItem key={user.id} value={user}>
-                {user.username}
-              </MenuItem>
-            ))}
-        </Select>
-      </FormControl>
       <UserWrapper>
-        {/* <PlantList data={userPlants} rowNames={rowNames} /> */}
-        {userPlants && <MaterialTable data={userPlants} />}
+        <FormControl className={classes.formControl}>
+          <InputLabel id='demo-simple-select-label'>Username</InputLabel>
+          <Select
+            labelId='demo-simple-select-label'
+            id='demo-simple-select'
+            value={currentUser}
+            onChange={handleChange}
+          >
+            {users &&
+              users.map((user) => (
+                <MenuItem key={user.id} value={user}>
+                  {user.username}
+                </MenuItem>
+              ))}
+          </Select>
+        </FormControl>
+        {userPlants && (
+          <EnhancedTable
+            data={userPlants}
+            setSelectedPlant={props.setSelectedPlant}
+          />
+        )}
       </UserWrapper>
     </div>
   );
@@ -77,6 +82,6 @@ const UserWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: auto;
-  width: 100%;
-  border: 1px black solid;
+  width: 50%;
+  padding: 30px;
 `;
