@@ -3,12 +3,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import clsx from 'clsx';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Switch from '@material-ui/core/Switch';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -215,7 +213,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   table: {
-    minWidth: 750,
+    minWidth: 500,
   },
   visuallyHidden: {
     border: 0,
@@ -237,7 +235,6 @@ export default function EnhancedTable({ data, setSelectedPlantId }) {
   const [orderBy, setOrderBy] = React.useState('age');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleRequestSort = (event, property) => {
@@ -306,7 +303,7 @@ export default function EnhancedTable({ data, setSelectedPlantId }) {
           <Table
             className={classes.table}
             aria-labelledby='tableTitle'
-            size={dense ? 'small' : 'medium'}
+            size={'medium'}
             aria-label='enhanced table'
           >
             <EnhancedTableHead
@@ -367,7 +364,7 @@ export default function EnhancedTable({ data, setSelectedPlantId }) {
                   );
                 })}
               {emptyRows > 0 && (
-                <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
+                <TableRow style={{ height: 53 * emptyRows }}>
                   <TableCell colSpan={6} />
                 </TableRow>
               )}

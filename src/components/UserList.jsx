@@ -49,39 +49,38 @@ export default function UserList(props) {
   };
 
   return (
-    <div>
-      <UserWrapper>
-        <FormControl className={classes.formControl}>
-          <InputLabel id='demo-simple-select-label'>Username</InputLabel>
-          <Select
-            labelId='demo-simple-select-label'
-            id='demo-simple-select'
-            value={currentUser}
-            onChange={handleChange}
-          >
-            {users &&
-              users.map((user) => (
-                <MenuItem key={user.id} value={user}>
-                  {user.username}
-                </MenuItem>
-              ))}
-          </Select>
-        </FormControl>
-        {userPlants && (
-          <EnhancedTable
-            data={userPlants}
-            setSelectedPlantId={props.setSelectedPlantId}
-          />
-        )}
-      </UserWrapper>
-    </div>
+    <UserWrapper>
+      <FormControl className={classes.formControl}>
+        <InputLabel id='demo-simple-select-label'>Username</InputLabel>
+        <Select
+          labelId='demo-simple-select-label'
+          id='demo-simple-select'
+          value={currentUser}
+          onChange={handleChange}
+        >
+          {users &&
+            users.map((user) => (
+              <MenuItem key={user.id} value={user}>
+                {user.username}
+              </MenuItem>
+            ))}
+        </Select>
+      </FormControl>
+      {userPlants && (
+        <EnhancedTable
+          data={userPlants}
+          setSelectedPlantId={props.setSelectedPlantId}
+        />
+      )}
+    </UserWrapper>
   );
 }
 
 const UserWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: auto;
+  height: 100%;
   width: 50%;
   padding: 30px;
+  outline: 1px solid #ebebd3;
 `;

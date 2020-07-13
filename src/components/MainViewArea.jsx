@@ -10,12 +10,18 @@ export default function MainViewArea() {
   return (
     <MainViewWrapper>
       <UserList setSelectedPlantId={setSelectedPlantId} />
-      <DetailedPlantView selectedPlantId={selectedPlantId} />
+      {selectedPlantId && (
+        <DetailedPlantView selectedPlantId={selectedPlantId} />
+      )}
     </MainViewWrapper>
   );
 }
 
 const MainViewWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
   height: 100%;
   width: 100%;
+  outline: 1px solid #ebebd3;
 `;
