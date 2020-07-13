@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 export default function DetailedPlantView(props) {
   DetailedPlantView.propTypes = {
-    plantId: PropTypes.number.isRequired,
+    selectedPlantId: PropTypes.number.isRequired,
   };
 
-  return <ViewWrapper></ViewWrapper>;
+  const [currentPlant, setCurrentPlant] = useState();
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:9000/plants/plant/${props.selectedPlantId}`)
+      .then((res) => setCurrentPlant(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  return (
+    <ViewWrapper>{currentPlant && <div>{currentPlant.name}</div>}</ViewWrapper>
+  );
 }
 
 const ViewWrapper = styled.div`

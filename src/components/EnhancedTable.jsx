@@ -230,7 +230,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EnhancedTable({ data, setSelectedPlant }) {
+export default function EnhancedTable({ data, setSelectedPlantId }) {
   const currentDate = Date.now();
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
@@ -271,7 +271,7 @@ export default function EnhancedTable({ data, setSelectedPlant }) {
         selected.slice(selectedIndex + 1)
       );
     }
-    setSelectedPlant(id);
+    setSelectedPlantId(id);
     setSelected(newSelected);
   };
 

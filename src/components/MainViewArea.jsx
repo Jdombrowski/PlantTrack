@@ -5,12 +5,12 @@ import UserList from './UserList';
 import DetailedPlantView from './DetailedPlantView';
 
 export default function MainViewArea() {
-  const [selectedPlant, setSelectedPlant] = useState();
+  const [selectedPlantId, setSelectedPlantId] = useState();
 
   return (
     <MainViewWrapper>
-      <UserList setSelectedPlant={setSelectedPlant} />
-      <DetailedPlantView selectedPlant={selectedPlant} />
+      <UserList setSelectedPlantId={setSelectedPlantId} />
+      <DetailedPlantView selectedPlantId={selectedPlantId} />
     </MainViewWrapper>
   );
 }

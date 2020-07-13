@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UserList(props) {
   UserList.propTypes = {
-    setSelectedPlant: PropTypes.func.isRequired,
+    setSelectedPlantId: PropTypes.func.isRequired,
   };
   const classes = useStyles();
   const [users, setUsers] = useState(false);
@@ -70,7 +70,7 @@ export default function UserList(props) {
         {userPlants && (
           <EnhancedTable
             data={userPlants}
-            setSelectedPlant={props.setSelectedPlant}
+            setSelectedPlantId={props.setSelectedPlantId}
           />
         )}
       </UserWrapper>

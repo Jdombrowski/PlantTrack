@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
   });
 });
 
-/* READ all plants . */
+/* READ all plants */
 router.get('/', (req, res) => {
   var q = 'SELECT * FROM plants ORDER BY id desc';
   dbConnection.query(q, (err, results) => {
