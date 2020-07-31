@@ -1,3 +1,6 @@
+Figma Link for designs https://www.figma.com/file/LqBjZfTSsp3HhRtM1F7PLy/PlantTrack?node-id=0%3A1
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
