@@ -8,10 +8,10 @@ import React, { useEffect, useState } from 'react';
 import Select from '@material-ui/core/Select';
 import styled from 'styled-components';
 
-import EnhancedTable from './EnhancedTable';
-
 const useStyles = makeStyles((theme) => ({
   formControl: {
+    color: '#ebebd3',
+    backgroundColor: '#ebebd3',
     minWidth: 120,
   },
   selectEmpty: {
@@ -22,11 +22,11 @@ const useStyles = makeStyles((theme) => ({
 export default function UserList(props) {
   UserList.propTypes = {
     setSelectedPlantId: PropTypes.func.isRequired,
+    setUserPlants: PropTypes.func.isRequired,
   };
   const classes = useStyles();
   const [users, setUsers] = useState(false);
   const [currentUser, setCurrentUser] = useState('');
-  const [userPlants, setUserPlants] = useState();
 
   useEffect(() => {
     axios
@@ -39,7 +39,7 @@ export default function UserList(props) {
     if (currentUser) {
       axios
         .get(`http://localhost:9000/plants/owner/${currentUser.id}`)
-        .then((res) => setUserPlants(res.data))
+        .then((res) => props.setUserPlants(res.data))
         .catch((err) => console.log(err));
     }
   }, [currentUser]);
@@ -66,12 +66,6 @@ export default function UserList(props) {
             ))}
         </Select>
       </FormControl>
-      {userPlants && (
-        <EnhancedTable
-          data={userPlants}
-          setSelectedPlantId={props.setSelectedPlantId}
-        />
-      )}
     </UserWrapper>
   );
 }
@@ -79,8 +73,6 @@ export default function UserList(props) {
 const UserWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 50%;
   padding: 30px;
   outline: 1px solid #ebebd3;
 `;

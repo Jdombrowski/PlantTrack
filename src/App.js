@@ -2,20 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 import MainViewArea from './components/MainViewArea';
-import img from './components/images/poly-background.png';
-import Header from './components/Header';
 
 function App() {
   return (
     <Background>
-      <Header />
       <MainViewArea />
     </Background>
   );
 }
 
 const Background = styled.div`
-  background-image: url(${img});
+  background-color: black;
   color: #ebebd3;
   display: flex;
   flex-direction: column;
